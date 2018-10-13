@@ -4,7 +4,7 @@
  * Author: colorlib
  * Copyright (C) 2018 colorlib
  */
- /* ------------------------------------- */
+/* ------------------------------------- */
 /*  TABLE OF CONTENTS
  /* ------------------------------------- */
 /*   PRE LOADING                          */
@@ -19,16 +19,16 @@
 
 
 
-    /* ==============================================
+/* ==============================================
 /*  PRE LOADING
-  =============================================== */
+=============================================== */
 'use strict';
-$(window).load(function() {
+$(window).load(function () {
     $('.loader').delay(500).fadeOut('slow');
 });
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     'use strict';
     /* ==============================================
@@ -46,7 +46,7 @@ $(document).ready(function() {
     /* ==============================================
       Sidebar show and hide
        =============================================== */
-    $(".menu-btn").on('click',function(i){
+    $(".menu-btn").on('click', function (i) {
         $("body").toggleClass("sidebar_closed");
     });
 
@@ -60,6 +60,15 @@ $(document).ready(function() {
         time: 3000
     });
 
+    /* ==============================================
+    cookies
+    =============================================== */
+
+    let closeBtn = document.getElementById('cookies_close');
+    let cookiesInfo = document.querySelector('.cookies');
+    closeBtn.addEventListener('click', function () {
+        cookiesInfo.classList.add('hidden')
+    });
 
     /* ==============================================
      portfolio-filter
@@ -77,10 +86,10 @@ $(document).ready(function() {
         }
     });
 
-    $grid.imagesLoaded().progress( function() {
+    $grid.imagesLoaded().progress(function () {
         $grid.isotope('layout');
     });
-    $('#filtr-container').on( 'click', 'li', function(e) {
+    $('#filtr-container').on('click', 'li', function (e) {
         e.preventDefault();
         $('#filtr-container li').removeClass('active');
         $(this).closest('li').addClass('active');
@@ -94,30 +103,44 @@ $(document).ready(function() {
 
     // portfolio-pop up
 
+    $('.open-popup-link').magnificPopup({
+        type: 'inline',
+        midClick: true,
+        mainClass: 'mfp-fade',
+        showCloseBtn: true,
+        closeOnContentClick: true,
+        gallery: {
+            enabled: true
+        },
+    });
+
+    // pop-up in portfolio website
+
     $('.img-container').magnificPopup({
-            delegate: 'a',
-            type: 'image',
-            tLoading: 'Loading image #%curr%...',
-            mainClass: 'mfp-img-mobile',
-            gallery: {
-                enabled: true,
-                navigateByImgClick: true,
-                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-            },
-            image: {
-                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-                titleSrc: function(item) {
-                    return item.el.attr('title');
-                }
-            },
-            zoom: {
-                enabled: true,
-                duration: 300, // don't foget to change the duration also in CSS
-                opener: function (element) {
-                    return element.find('img');
-                }
+        delegate: 'a',
+        type: 'image',
+        tLoading: 'Loading image #%curr%...',
+        mainClass: 'mfp-img-mobile',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+        },
+        image: {
+            tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+            titleSrc: function (item) {
+                return item.el.attr('title');
             }
-        });
+        },
+        zoom: {
+            enabled: true,
+            duration: 300, // don't foget to change the duration also in CSS
+            opener: function (element) {
+                return element.find('img');
+            }
+        }
+    });
+
 
     /* ==============================================
      OWL CAROUSEL
@@ -135,231 +158,12 @@ $(document).ready(function() {
      /* ------------------------------------- */
     'use strict';
 
-    var waypoints = $('.progress_container').waypoint(function() {
+    var waypoints = $('.progress_container').waypoint(function () {
         $('.progress .progress-bar').progressbar({
             transition_delay: 1000
         });
-    },{
-        offset: '50%'
-    });
-
-
-        /* --------------------------------------------------------
-    MAPS
-    ----------------------------------------------------------- */
-    var map = $('#map');
-    if(map.length > 0) {
-        google.maps.event.addDomListener(window, 'load', init);
-        var lattuide = map.attr('data-lat');
-        var longtuided = map.attr('data-lon');
-    }
-    function init() {
-        // Basic options for a simple Google Map
-        // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-        var mapOptions = {
-            // How zoomed in you want the map to start at (always required)
-            zoom: 16,
-            scrollwheel: false,
-            navigationControl: false,
-            mapTypeControl: false,
-            scaleControl: false,
-            // The latitude and longitude to center the map (always required)
-            center: new google.maps.LatLng(lattuide, longtuided), // New York
-
-            // How you would like to style the map.
-            // This is where you would paste any style found on Snazzy Maps.
-            styles: [
-                {
-                    "featureType": "water",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#a3ccff"
-                        },
-                        {
-                            "lightness": 17
-                        }
-                    ]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#dfdfdf"
-                        },
-                        {
-                            "lightness": 20
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        },
-                        {
-                            "lightness": 17
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        },
-                        {
-                            "lightness": 29
-                        },
-                        {
-                            "weight": 0.2
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        },
-                        {
-                            "lightness": 18
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.local",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        },
-                        {
-                            "lightness": 16
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#f5f5f5"
-                        },
-                        {
-                            "lightness": 21
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi.park",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#f9ecd4"
-                        },
-                        {
-                            "lightness": 21
-                        }
-                    ]
-                },
-                {
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#ffffff"
-                        },
-                        {
-                            "lightness": 16
-                        }
-                    ]
-                },
-                {
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "saturation": 36
-                        },
-                        {
-                            "color": "#333333"
-                        },
-                        {
-                            "lightness": 40
-                        }
-                    ]
-                },
-                {
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "transit",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#f2f2f2"
-                        },
-                        {
-                            "lightness": 19
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#fefefe"
-                        },
-                        {
-                            "lightness": 20
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#fefefe"
-                        },
-                        {
-                            "lightness": 17
-                        },
-                        {
-                            "weight": 1.2
-                        }
-                    ]
-                }
-            ]
-        };
-
-        // Get the HTML DOM element that will contain your map
-        // We are using a div with id="map" seen below in the <body>
-        var mapElement = document.getElementById('map');
-
-        // Create the Google Map using our element and options defined above
-        var map = new google.maps.Map(mapElement, mapOptions);
-
-        // Let's also add a marker while we're at it
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(lattuide, longtuided),
-            map: map,
-            icon: 'assets/img/map-icon.png',
-            title: 'cocoon!'
+    }, {
+            offset: '50%'
         });
-    }
 
 });

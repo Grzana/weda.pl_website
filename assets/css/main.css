@@ -1608,14 +1608,19 @@ img {
   right: 0;
   bottom: 0;
 }
+#leave_comment{
+  position: relative;
+  width: 40px;
+  left: calc(50% - 20px);
+}
 .menu_block .copy_right {
   padding: 25px;
-  color: #f28a21;
+  color: #9c9ca9;
   margin-top: 50px;
 }
 .menu_block .copy_right p {
-  color: #f28a21;
-  font-size: 12px;
+  color: #9c9ca9;
+  font-size: 8px;
   text-align: center;
   font-weight: 500;
 }
@@ -1761,14 +1766,16 @@ img {
   position: relative;
   left: 0;
   right: 0;
-  margin-right: -75px;
+  margin-right: 0;
   z-index: 999;
-  top: 80px;
   width: auto;
   bottom: 0;
   padding: 15px;
   min-height: 500px;
   background-color: #ffffff;
+}
+.content_box.description {
+  width: 100% !important;
 }
 .img_card .content_section .content_box .content_box_inner {
   padding: 25px 20px 25px 15px;
@@ -1898,6 +1905,30 @@ img {
 /*  ----------------------------------------------------
 5 icon boxes
 -------------------------------------------------------- */
+
+.cookies {
+  width: 100%;
+  min-height: 10vh;
+  opacity: 0.9;
+  background-color: #868e96;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+}
+.cookies>#cookies_text, .cookies>#cookies_close {
+  color: #fff;
+  margin: 0.5em;
+}
+.cookies>#cookies_text {
+  font-size: 15px;
+}
+.cookies>#cookies_close {
+  cursor: pointer;
+  font-weight: 500;
+}
+
 .icon-lg {
   font-size: 64px !important;
 }
@@ -1987,12 +2018,31 @@ img {
   -webkit-transition: all ease-in-out 0.4s;
   transition: all ease-in-out 0.4s;
 }
-.project_box_one img {
+.index-popup .wrap{
+  width: 80%;
+  margin: 15px auto;
+  padding: 20px;
+  color: black;
+  background-color: #e0e1e0;
+  -webkit-box-shadow: 0px 0px 30px 6px rgba(107,103,99,1);
+  -moz-box-shadow: 0px 0px 30px 6px rgba(107,103,99,1);
+  box-shadow: 0px 0px 30px 6px rgba(107,103,99,1); 
+  transition: 1s all;
+}
+.index-popup .wrap ul {
+  list-style-type:square;
+}
+.index-popup .wrap p {
+  color: black;
+}
+.index-popup .wrap p a:hover {
+  color: white;
+}
+.index-popup .wrap p span {
+  text-align: center;
   display: block;
-  width: 100%;
-  height: 100%;
-  -webkit-transition: all ease-in-out 0.4s;
-  transition: all ease-in-out 0.4s;
+  font-size: 1.1em;
+  font-weight: 500;
 }
 .project_box_one .product_info {
   position: absolute;
@@ -2072,9 +2122,40 @@ img {
   text-transform: capitalize;
 }
 
+.mfp-bg {}
+
+.mfp-fade.mfp-bg {
+  opacity: 0;
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+
+.mfp-fade.mfp-bg.mfp-ready {
+  opacity: 0.8;
+}
+
+.mfp-fade.mfp-bg.mfp-removing {
+  opacity: 0;
+}
+
+.mfp-fade.mfp-wrap .mfp-content {
+  opacity: 0;
+  transition: all 0.4s ease-out;
+}
+
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+  opacity: 1;
+}
+
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+  opacity: 0;
+}
+
 .gutters .grid-item {
   margin-bottom: 30px;
 }
+
 
 /*  ----------------------------------------------------
 7 counter
@@ -2490,4 +2571,22 @@ textarea.form-control {
 
 .map_div {
   padding: 0;
+}
+
+.hidden {
+  display: none
+}
+
+.show {
+  display: block
+}
+
+#privacy_policy-text p{
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.content_box_inner p{
+  text-align: justify;
+  text-justify: inter-word;
 }
